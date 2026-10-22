@@ -1,6 +1,6 @@
-import BankTools.BankAccount;
-import BankTools.BankAccountManager;
-import BankTools.SavingsAccount;
+import banktools.BankAccount;
+import banktools.BankAccountManager;
+import banktools.SavingsAccount;
 
 /**
  * Exercise1.
