@@ -1,3 +1,7 @@
+package BankTools;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * BankAccount.
  */
@@ -5,9 +9,12 @@ public class BankAccount {
   private double balance;
   private boolean isFrozen;
 
+  List<Transaction> transactionHistory;
+
   public BankAccount() {
     balance = 0;
     isFrozen = false;
+    transactionHistory = new ArrayList<Transaction>();
   }
 
   private enum Operation {
@@ -43,6 +50,7 @@ public class BankAccount {
 
       if (operation == Operation.DEPOSIT) {
         balance += amount;
+        transactionHistory.add(new Transaction("Deposit", amount));
       }
 
       if (operation == Operation.WITHDRAW) {
@@ -50,11 +58,22 @@ public class BankAccount {
           System.out.println("Insufficient balance.");
         } else {
           balance -= amount;
+          transactionHistory.add(new Transaction("Withdraw", amount));
         }
       }
 
       System.out.printf("Current balance: %.2f%n", balance);
     }
+  }
+
+  public List<Transaction> geTransactionHistory(){
+    System.out.println("Transaction History:");
+    System.out.print("[Transaction ");
+    for(Transaction transaction : transactionHistory){
+      System.out.print("[" + transaction + "] ");
+    }
+    System.out.println("]");
+    return transactionHistory;
   }
 
   public double getBalance() {

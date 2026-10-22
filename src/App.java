@@ -1,5 +1,9 @@
+import BankTools.BankAccount;
+import BankTools.BankAccountManager;
+import BankTools.SavingsAccount;
+
 /**
- * App.
+ * Exercise1.
  */
 public class App {
   /**
@@ -9,6 +13,8 @@ public class App {
    * @throws Exception Default for main
    */
   public static void main(String[] args) throws Exception {
+    System.out.println("EXERCISE 1:\n\n");
+
     // Test Case 1
     System.out.println("\nTEST CASE 1:");
     BankAccount acc1 = new SavingsAccount("Test0");
@@ -50,5 +56,22 @@ public class App {
     System.out.println("\nTEST CASE 10:");
     acc1.unfreezeAccount();
     acc1.withdraw(100);
+
+    System.out.println("EXERCISE 2:\n\n");
+
+    System.out.println("\nTEST CASE 1:");
+    acc1.geTransactionHistory();
+
+    System.out.println("\nTEST CASE 2:");
+    BankAccountManager accM1 = new BankAccountManager();
+
+    System.out.println("\nTEST CASE 3:");
+    accM1.addAccount(acc1);
+
+    System.out.println("\nTEST CASE 4:");
+    accM1.addAccount(new SavingsAccount("Test1"));
+
+    System.out.println("\nTEST CASE 5:");
+    accM1.listAccounts();
   }
 }
