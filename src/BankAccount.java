@@ -39,15 +39,18 @@ public class BankAccount {
 
         if (operation == Operation.DEPOSIT)
             System.out.printf("Amount deposited: %.2f%n", amount);
-        if (operation == Operation.WITHDRAW) {
+        
+        if (operation == Operation.WITHDRAW) 
             System.out.printf("Amount withdrawn: %.2f%n", amount);
-        }
+        
         if (amount <= 0) {
             System.out.println("Invalid amount. Must be greater than 0");
         } else {
+
             if (operation == Operation.DEPOSIT) {
                 balance += amount;
             }
+
             if (operation == Operation.WITHDRAW) {
                 if (amount > balance) {
                     System.out.println("Insufficient balance.");
@@ -55,6 +58,7 @@ public class BankAccount {
                     balance -= amount;
                 }
             }
+
             System.out.printf("Current balance: %.2f%n", balance);
         }
     }
