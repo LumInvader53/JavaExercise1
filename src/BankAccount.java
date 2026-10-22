@@ -3,6 +3,9 @@ enum Operation {
     WITHDRAW
 }
 
+/**
+ * BankAccount
+ */
 public class BankAccount {
     private double balance;
     private boolean isFrozen;
@@ -12,10 +15,23 @@ public class BankAccount {
         isFrozen = false;
     }
 
-    private void helperFunction(Operation operation, double amount) {
-        // 1 - deposit
-        // 2 - withdraw
+    /**
+     * 
+     * @param amount
+     */
+    public void deposit(double amount) {
+        helperFunction(Operation.DEPOSIT, amount);
+    }
 
+    /**
+     * 
+     * @param amount
+     */
+    public void withdraw(double amount) {
+        helperFunction(Operation.WITHDRAW, amount);
+    }
+
+    private void helperFunction(Operation operation, double amount) {
         if (isFrozen) {
             System.out.println("Account is FROZEN.\nUnable to transact.");
             return;
@@ -41,14 +57,6 @@ public class BankAccount {
             }
             System.out.printf("Current balance: %.2f%n", balance);
         }
-    }
-
-    public void deposit(double amount) {
-        helperFunction(Operation.DEPOSIT, amount);
-    }
-
-    public void withdraw(double amount) {
-        helperFunction(Operation.WITHDRAW, amount);
     }
 
     public double getBalance() {
