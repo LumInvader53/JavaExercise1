@@ -1,4 +1,4 @@
-package BankTools;
+package banktools;
 /**
  * SavingsAccount.
  */

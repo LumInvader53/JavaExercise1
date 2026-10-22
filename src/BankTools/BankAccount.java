@@ -1,4 +1,4 @@
-package BankTools;
+package banktools;
 import java.util.ArrayList;
 import java.util.List;
 
