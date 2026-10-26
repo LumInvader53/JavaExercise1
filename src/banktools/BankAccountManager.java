@@ -1,6 +1,8 @@
 package banktools;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,5 +47,19 @@ public class BankAccountManager implements Bank {
           + ", Account Name: " + accountName
           + ", Balance: " + balance);
     }
+  }
+
+  public List<Transaction> filterTransactionsAtOrAbove(double amount, List<Transaction> txList) {
+    System.out.println("Filtering transactions at or above 200...");
+    return txList.stream()
+        .filter(a -> a.getAmount() >= 500)
+        .toList();
+  }
+
+  public List<Transaction> sortTransactionsByAmount(List<Transaction> txList) {
+    System.out.println("Sorting transactions by amount...");
+    return txList.stream()
+        .sorted(Comparator.comparingDouble(Transaction::getAmount))
+        .toList();
   }
 }

@@ -3,6 +3,10 @@ package banktools;
 import java.util.ArrayList;
 import java.util.List;
 
+import exceptions.AccountFrozenException;
+import exceptions.InsufficientFundsException;
+import exceptions.InvalidAmountException;
+
 /**
  * BankAccount.
  */
@@ -33,17 +37,15 @@ public class BankAccount {
    *
    * @param amount Amount to be deposited
    */
-  public void deposit(double amount) {
+  public void deposit(double amount) throws AccountFrozenException, InvalidAmountException {
     if (isFrozen) {
-      System.out.println("Account is FROZEN.\nUnable to transact.");
-      return;
+      throw new AccountFrozenException("Account is FROZEN.\nUnable to transact.");
     }
 
     System.out.printf("Amount deposited: %.2f%n", amount);
 
     if (amount <= 0) {
-      System.out.println("Invalid amount. Must be greater than 0");
-      return;
+      throw new InvalidAmountException("Invalid amount. Must be greater than 0");
     }
 
     balance += amount;
@@ -61,21 +63,20 @@ public class BankAccount {
    *
    * @param amount Amount to be withdrawn
    */
-  public void withdraw(double amount) {
+  public void withdraw(double amount) throws AccountFrozenException, InvalidAmountException, InsufficientFundsException {
     if (isFrozen) {
-      System.out.println("Account is FROZEN.\nUnable to transact.");
-      return;
+      throw new AccountFrozenException("Account is FROZEN.\nUnable to transact.");
     }
 
     System.out.printf("Amount withdrawn: %.2f%n", amount);
 
     if (amount <= 0) {
-      System.out.println("Invalid amount. Must be greater than 0");
-      return;
+      throw new InvalidAmountException("Invalid amount. Must be greater than 0");
     }
 
     if (amount > balance) {
-      System.out.println("Insufficient balance.");
+      String insufficientBalanceMessage = String.format("Insufficient balance.\nCurrent balance: %.2f%n", balance);
+      throw new InsufficientFundsException(insufficientBalanceMessage);
     } else {
       balance -= amount;
       transactionHistory.add(new Transaction("Withdraw", amount));
@@ -90,13 +91,13 @@ public class BankAccount {
    *
    * @return Returns list of all transactions from account.
    */
-  public List<Transaction> geTransactionHistory() {
-    System.out.println("Transaction History:");
-    System.out.print("[Transaction ");
-    for (Transaction transaction : transactionHistory) {
-      System.out.print("[" + transaction + "] ");
-    }
-    System.out.println("]");
+  public List<Transaction> getTransactionHistory() {
+    // System.out.println("Transaction History:");
+    // System.out.print("[Transaction ");
+    // for (Transaction transaction : transactionHistory) {
+    //   System.out.print("[" + transaction + "] ");
+    // }
+    // System.out.println("]");
     return transactionHistory;
   }
 
