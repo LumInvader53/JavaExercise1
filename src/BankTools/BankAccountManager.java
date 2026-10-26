@@ -23,7 +23,7 @@ public class BankAccountManager implements Bank {
   }
 
   @Override
-  public BankAccount geAccount(int id) {
+  public BankAccount getAccount(int id) {
     return accounts.get(id);
   }
 
