@@ -13,7 +13,7 @@ public class App {
    * @throws Exception Default for main
    */
   public static void main(String[] args) throws Exception {
-    System.out.println("EXERCISE 1:\n\n");
+    System.out.println("EXERCISE 1:\n");
 
     // Test Case 1
     System.out.println("\nTEST CASE 1:");
@@ -57,7 +57,7 @@ public class App {
     acc1.unfreezeAccount();
     acc1.withdraw(100);
 
-    System.out.println("EXERCISE 2:\n\n");
+    System.out.println("\n\nEXERCISE 2:\n");
 
     System.out.println("\nTEST CASE 1:");
     acc1.geTransactionHistory();

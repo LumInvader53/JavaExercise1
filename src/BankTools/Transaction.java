@@ -11,7 +11,10 @@ public class Transaction {
   private LocalDateTime time_stamp;
 
   /**
-   * Constructor for Transaction.
+   * Initializes Transaction.
+   * Types can be Deposit or Withdraw.
+   * Amount is amount withdrawn or deposited based on type.
+   * time_stamp is set to current time now.
    *
    * @param type   String
    * @param amount double
