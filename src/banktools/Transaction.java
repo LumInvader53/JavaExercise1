@@ -1,6 +1,7 @@
 package banktools;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Transaction.
@@ -27,7 +28,12 @@ public class Transaction {
 
   @Override
   public String toString() {
-    return "type=" + type + ", amount=" + amount + ", time_stamp=" + timeStamp;
+    return "Transaction [type=" + type
+        + ", amount=" + amount
+        + ", time_stamp=" + timeStamp.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "]";
   }
 
+  public double getAmount() {
+    return amount;
+  }
 }
