@@ -1,9 +1,6 @@
 import banktools.BankAccount;
 import banktools.BankAccountManager;
 import banktools.SavingsAccount;
-import banktools.Transaction;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Exercise1.
@@ -21,86 +18,51 @@ public class App {
     // Test Case 1
     System.out.println("\nTEST CASE 1:");
     BankAccount acc1 = new SavingsAccount("Test0");
+    System.out.println("Account Owner: " + ((SavingsAccount)acc1).getOwnerName() + ".");
 
     // Test Case 2
     System.out.println("\nTEST CASE 2:");
-    try {
-      acc1.deposit(1000.125);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.deposit(1000.125);
 
     // Test Case 3
     System.out.println("\nTEST CASE 3:");
-    try {
-      acc1.deposit(0);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.deposit(0);
 
     // Test Case 4
     System.out.println("\nTEST CASE 4:");
-    try {
-      acc1.deposit(-500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.deposit(-500);
 
     // Test Case 5
     System.out.println("\nTEST CASE 5:");
-    try {
-      acc1.withdraw(500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.withdraw(500);
 
     // Test Case 6
     System.out.println("\nTEST CASE 6:");
-    try {
-      acc1.withdraw(1500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.withdraw(1500);
 
     // Test Case 7
     System.out.println("\nTEST CASE 7:");
-    try {
-      acc1.withdraw(-100);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.withdraw(-100);
 
     // Test Case 8
     System.out.println("\nTEST CASE 8:");
-    try {
-      acc1.freezeAccount();
-      acc1.deposit(11500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.freezeAccount();
+    acc1.deposit(11500);
 
     // Test Case 9
     System.out.println("\nTEST CASE 9:");
-    try {
-      acc1.withdraw(500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.withdraw(500);
 
     // Test Case 10
     System.out.println("\nTEST CASE 10:");
-    try {
-      acc1.unfreezeAccount();
-      acc1.withdraw(100);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.unfreezeAccount();
+    acc1.withdraw(100);
 
     System.out.println("\n\nEXERCISE 2:\n");
 
     System.out.println("\nTEST CASE 1:");
     System.out.println("Transaction history:");
-    System.out.println(formatTransactionHistoryList(acc1.getTransactionHistory()));
+    System.out.println(BankAccount.formatTransactionHistoryList(acc1.getTransactionHistory()));
 
     System.out.println("\nTEST CASE 2:");
     BankAccountManager accM1 = new BankAccountManager();
@@ -117,72 +79,32 @@ public class App {
     System.out.println("\n\nEXERCISE 3:\n");
 
     System.out.println("\nTEST CASE 1:");
-    try {
-      acc1.deposit(-500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.deposit(-500);
 
     System.out.println("\nTEST CASE 2:");
-    try {
-      acc1.freezeAccount();
-      acc1.deposit(11500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.freezeAccount();
+    acc1.deposit(11500);
 
     System.out.println("\nTEST CASE 3:");
-    try {
-      acc1.unfreezeAccount(); // Have to call?
-      acc1.withdraw(-100);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.unfreezeAccount();
+    acc1.withdraw(-100);
 
     System.out.println("\nTEST CASE 4:");
-    try {
-      acc1.withdraw(1500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.withdraw(1500);
 
     System.out.println("\nTEST CASE 5:");
-    try {
-      acc1.freezeAccount();
-      acc1.withdraw(500);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    acc1.freezeAccount();
+    acc1.withdraw(500);
 
     System.out.println("\nTEST CASE 6:");
-    try {
-      System.out.println(
-          formatTransactionHistoryList(
-              accM1.filterTransactionsAtOrAbove(200, acc1.getTransactionHistory())));
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    System.out.println(
+        BankAccount.formatTransactionHistoryList(
+            accM1.filterTransactionsAtOrAbove(200, acc1.getTransactionHistory())));
 
     System.out.println("\nTEST CASE 7:");
-    try {
-      System.out.println(
-          formatTransactionHistoryList(
-              accM1.sortTransactionsByAmount(acc1.getTransactionHistory())));
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-  }
 
-  /**
-   * Format for printing a list of Transactions from BankAccountManager and
-   * BankAccount.
-   *
-   * @param txList List of transactions to be formatted
-   * @return String of the formatted list of transactions
-   */
-  public static String formatTransactionHistoryList(List<Transaction> txList) {
-    return txList.stream()
-        .map(tx -> tx.toString())
-        .collect(Collectors.joining("\n", "[Transaction ", "]"));
+    System.out.println(
+        BankAccount.formatTransactionHistoryList(
+            accM1.sortTransactionsByAmount(acc1.getTransactionHistory())));
   }
 }
