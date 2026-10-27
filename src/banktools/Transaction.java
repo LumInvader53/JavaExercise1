@@ -28,9 +28,9 @@ public class Transaction {
 
   @Override
   public String toString() {
-    return "Transaction [type=" + type +
-        ", amount=" + amount +
-        ", time_stamp=" + timeStamp.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "]";
+    return "Transaction [type=" + type
+        + ", amount=" + amount
+        + ", time_stamp=" + timeStamp.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "]";
   }
 
   public double getAmount() {

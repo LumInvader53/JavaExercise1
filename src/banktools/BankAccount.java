@@ -1,11 +1,10 @@
 package banktools;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import exceptions.AccountFrozenException;
 import exceptions.InsufficientFundsException;
 import exceptions.InvalidAmountException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * BankAccount.
@@ -63,7 +62,8 @@ public class BankAccount {
    *
    * @param amount Amount to be withdrawn
    */
-  public void withdraw(double amount) throws AccountFrozenException, InvalidAmountException, InsufficientFundsException {
+  public void withdraw(double amount) throws AccountFrozenException,
+      InvalidAmountException, InsufficientFundsException {
     if (isFrozen) {
       throw new AccountFrozenException("Account is FROZEN.\nUnable to transact.");
     }
@@ -75,7 +75,10 @@ public class BankAccount {
     }
 
     if (amount > balance) {
-      String insufficientBalanceMessage = String.format("Insufficient balance.\nCurrent balance: %.2f%n", balance);
+      String insufficientBalanceMessage = String.format(
+          "Insufficient balance.\nCurrent balance: %.2f%n",
+          balance);
+
       throw new InsufficientFundsException(insufficientBalanceMessage);
     } else {
       balance -= amount;
@@ -95,7 +98,7 @@ public class BankAccount {
     // System.out.println("Transaction History:");
     // System.out.print("[Transaction ");
     // for (Transaction transaction : transactionHistory) {
-    //   System.out.print("[" + transaction + "] ");
+    // System.out.print("[" + transaction + "] ");
     // }
     // System.out.println("]");
     return transactionHistory;

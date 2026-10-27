@@ -1,15 +1,20 @@
 package exceptions;
 
+/**
+ * AccountFrozenException.
+ * Exception for when when operations are performed on a frozen account.
+ *
+ */
 public class AccountFrozenException extends Exception {
-    public String message;
+  private String message;
 
-    public AccountFrozenException(String message) {
-        super(message);
-        this.message = message;
-    }
+  public AccountFrozenException(String message) {
+    super(message);
+    this.message = message;
+  }
 
-    public String getMessage() {
-        return message;
-    }
+  public String getMessage() {
+    return message;
+  }
 
 }
