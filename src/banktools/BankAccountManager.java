@@ -11,6 +11,7 @@ import java.util.Map;
 public class BankAccountManager implements Bank {
   private Map<Integer, BankAccount> accounts;
   private int id;
+  private static int NUMBER_OF_ACCOUNTS = 100;
 
   public BankAccountManager() {
     accounts = new HashMap<Integer, BankAccount>();
@@ -19,6 +20,10 @@ public class BankAccountManager implements Bank {
 
   @Override
   public void addAccount(BankAccount account) {
+    if (id >= NUMBER_OF_ACCOUNTS) {
+      System.out.println("Account limit reached.");
+      return;
+    }
     accounts.put(id, account);
     System.out.println("Account successfully added with ID: " + id);
     id++;
