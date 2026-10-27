@@ -1,6 +1,9 @@
 import banktools.BankAccount;
 import banktools.BankAccountManager;
 import banktools.SavingsAccount;
+import banktools.Transaction;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Exercise1.
@@ -97,7 +100,7 @@ public class App {
 
     System.out.println("\nTEST CASE 1:");
     System.out.println("Transaction history:");
-    System.out.println(acc1.getTransactionHistory());
+    System.out.println(formatTransactionHistoryList(acc1.getTransactionHistory()));
 
     System.out.println("\nTEST CASE 2:");
     BankAccountManager accM1 = new BankAccountManager();
@@ -130,7 +133,7 @@ public class App {
 
     System.out.println("\nTEST CASE 3:");
     try {
-      acc1.unfreezeAccount(); //Have to call?
+      acc1.unfreezeAccount(); // Have to call?
       acc1.withdraw(-100);
     } catch (Exception e) {
       System.out.println(e.getMessage());
@@ -153,16 +156,33 @@ public class App {
 
     System.out.println("\nTEST CASE 6:");
     try {
-      System.out.println(accM1.filterTransactionsAtOrAbove(200, acc1.getTransactionHistory()));
+      System.out.println(
+          formatTransactionHistoryList(
+              accM1.filterTransactionsAtOrAbove(200, acc1.getTransactionHistory())));
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
 
     System.out.println("\nTEST CASE 7:");
     try {
-      System.out.println(accM1.sortTransactionsByAmount(acc1.getTransactionHistory()));
+      System.out.println(
+          formatTransactionHistoryList(
+              accM1.sortTransactionsByAmount(acc1.getTransactionHistory())));
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
+  }
+
+  /**
+   * Format for printing a list of Transactions from BankAccountManager and
+   * BankAccount.
+   *
+   * @param txList List of transactions to be formatted
+   * @return String of the formatted list of transactions
+   */
+  public static String formatTransactionHistoryList(List<Transaction> txList) {
+    return txList.stream()
+        .map(tx -> tx.toString())
+        .collect(Collectors.joining("\n", "[Transaction ", "]"));
   }
 }

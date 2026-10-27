@@ -90,17 +90,10 @@ public class BankAccount {
 
   /**
    * Returns transaction history of account.
-   * Prints each transaction.
    *
    * @return Returns list of all transactions from account.
    */
   public List<Transaction> getTransactionHistory() {
-    // System.out.println("Transaction History:");
-    // System.out.print("[Transaction ");
-    // for (Transaction transaction : transactionHistory) {
-    // System.out.print("[" + transaction + "] ");
-    // }
-    // System.out.println("]");
     return transactionHistory;
   }
 
